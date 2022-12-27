@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1252381130116800, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4249338741251280, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -183,8 +187,12 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2949136667889692222, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
+      propertyPath: xAngle
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2949136667889692222, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2949136667889692222, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
       propertyPath: rotateSpeed
@@ -196,13 +204,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7990813880974022940, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
       propertyPath: m_AngularDrag
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7990813880974022940, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1370007011, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 26b1a3466d0b8f341bcc73e6ab2937eb, type: 3}
 --- !u!1 &1055213409
 GameObject:

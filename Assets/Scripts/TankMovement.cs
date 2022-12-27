@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TankMovement : MonoBehaviour
 {
@@ -12,12 +14,25 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float rotateSpeed = 50f;
 
-    private Rigidbody rb;
+    [SerializeField] private float xAngle;
+
+    private Rigidbody _rb;
+    private Transform _hullLOD0;
 
     private void Awake()
     {
         // Присваиваем значение в переменную rb
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
+        _rb.drag = maxSpeed;
+
+        _hullLOD0 = transform.GetChild(0);
+
+
+    }
+
+    private void Update()
+    {
+        // Tilt tank
     }
 
     void FixedUpdate()
@@ -37,29 +52,50 @@ public class TankMovement : MonoBehaviour
         switch (moveVertical)
         {
             case MoveVerticalStop:
-              
+                //rb.velocity= Vector3.up;
 
-                //TODO наклон танка на зад при остановке
+                Movement(movement, moveVertical);
+                //TODO во время торможения должен наклоняться вперед;
+                TiltTank();
 
                 break;
             case MoveVerticalBack:
-                rb.AddRelativeForce(transform.TransformDirection(movement));
+                Movement(movement, moveVertical);
+                TiltTank();
 
-                //TODO наклон танка в пред при движении 
+                //TODO Во время ускорения танк должен наклоняться назад
 
                 break;
             case MoveVerticalForward:
-                rb.AddRelativeForce(transform.TransformDirection(movement));
-                //TODO наклон танка в пред при движении 
+                Movement(movement, moveVertical);
+                TiltTank();
+
+                //TODO нВо время ускорения танк должен наклоняться назад
 
                 break;
         }
+    }
 
-        // Работаем со светом
-        // Если двигаемся вперед и объект frontLights не активен,
-        // то включаем этот объект, тем самым включаем передние фары
-        if (moveVertical > 0)
+    private void TiltTank()
+    {
+        if (_rb.velocity.magnitude != 0)
         {
+            
+                _hullLOD0.transform.rotation = new Quaternion(xAngle, 0, 0, 1f);
+            
         }
+        else if (_rb.velocity.magnitude == 0)
+        {
+            
+            _hullLOD0.transform.rotation = new Quaternion(-xAngle, 0, 0, 1f);
+
+            
+
+        }
+    }
+
+    private void Movement(Vector3 movement, float moveVertical)
+    {
+        _rb.AddRelativeForce(transform.TransformDirection(movement));
     }
 }
